@@ -6,12 +6,23 @@ import java.util.Random;
 
 import HospitalSimulation.Patient.HealthState;
 
+/**
+ * Class represents a hospital entity. Class includes three methods that define
+ * healing process of patients.
+ * 
+ * @author sabinaorazem
+ * @since 23.10.2018
+ * @version 1.1
+ */
 public class Hospital implements Serializable{
 	
 	static final long serialVersionUID = 1L;
 	
 	private static Random random = new Random();
 	
+	/**
+	 * Medication enum type has 4 possible values AS, AN, I and P.
+	 */
 	public enum Medication {
 
 		AS("Aspirin"), AN("Antibiotic"), I("Insulin"), P("Paracetamol"), N("No medication");
@@ -40,6 +51,13 @@ public class Hospital implements Serializable{
 		}
 	}
 	
+	/**
+	 * Method healPatienet defines an algorithm that changes patients health state
+	 * according to prescribed medications.
+	 * 
+	 * @param patient
+	 * @return Patient
+	 */
 	public Patient healPatient(Patient patient) {
 		HealthState currentState = patient.getCurrentState();
 		ArrayList<Medication> medications = patient.getPrescribedMedication();
@@ -70,6 +88,15 @@ public class Hospital implements Serializable{
 		return patient;
 	}
 
+	
+	/**
+	 * Method checks for some illegal combinations of medications. One combination
+	 * causes death and one fever.
+	 * 
+	 * @param pat
+	 * @param currentState
+	 * @return HealthState
+	 */
 	private HealthState checkIligalCombinations(Patient pat, HealthState currentState) { 
 		ArrayList<Medication> prescribedMed = pat.getPrescribedMedication();
 
@@ -81,6 +108,13 @@ public class Hospital implements Serializable{
 		return currentState;
 	}
 	
+	/**
+	 * Method generates a random number which defines if patient is magically
+	 * brought back to life.
+	 * 
+	 * @param patient
+	 * @return HealthState
+	 */
 	private HealthState flyingFlyingSpaghettiMonster(Patient patient) {
 		if(random.nextInt(1000000) == 1) {
 			return HealthState.H;

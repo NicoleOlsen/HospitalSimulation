@@ -5,11 +5,20 @@ import java.util.ArrayList;
 
 import HospitalSimulation.Hospital.Medication;
 
-
+/**
+ * Class represents a patient entity.
+ * 
+ * @author sabinaorazem
+ * @since 23.10.2018
+ * @version 1.1
+ */
 public class Patient implements Serializable{
 	
 	static final long serialVersionUID = 1L;
 	
+	/**
+	 * HealthState enum type has 5 possible values F, H, D, T and X.
+	 */
 	public enum HealthState {
 
 		F("Fever"), H("Healthy"), D("Diabetes"), T("Tuberculosis"), X("Dead");
@@ -35,7 +44,7 @@ public class Patient implements Serializable{
 		}
 		
 		public static String displayValidHealthStates() { 
-			return "Valid helath states are: F,H,D,T and X.";
+			return "Valid helath states are F,H,D,T and X.";
 		}
 	}
 	
@@ -47,18 +56,30 @@ public class Patient implements Serializable{
 		this.prescribedMedication = medication;
 	}
 
+	/**
+	 * @return HealthState
+	 */
 	public HealthState getCurrentState() {
 		return currentState;
 	}
 
+	/**
+	 * @param currentState
+	 */
 	public void setCurrentState(HealthState currentState) {
 		this.currentState = currentState;
 	}
 
+	/**
+	 * @return ArrayList<Medication>
+	 */
 	public ArrayList<Medication> getPrescribedMedication() {
 		return prescribedMedication;
 	}
 
+	/**
+	 * @param prescribedMedication
+	 */
 	public void setPrescribedMedication(ArrayList<Medication> prescribedMedication) {
 		this.prescribedMedication = prescribedMedication;
 	}

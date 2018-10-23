@@ -8,6 +8,15 @@ import java.util.Map;
 import HospitalSimulation.Hospital.Medication;
 import HospitalSimulation.Patient.HealthState;
 
+/**
+ * Class combines objects of Patient and Hospital. Here we interact
+ * with user, process input data and print string representation of patients
+ * health states to strout.
+ * 
+ * @author sabinaorazem
+ * @since 23.10.2018
+ * @version 1.1
+ */
 public class HospitalSimulation implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -19,13 +28,22 @@ public class HospitalSimulation implements Serializable{
 	private static ArrayList<Medication> medsGivenToPatients = new ArrayList<>();
 	private static ArrayList<Patient> healedPatients = new ArrayList<>();
 	
+	/**
+	 * Method converts strin into objects Patient. Data is processed
+	 * and data about healed patient is received. Method returns the health state of
+	 * the patient after a visit to the hospital.
+	 * 
+	 * @param String patients
+	 * @param String medications
+	 * @return String mapToStr(mapPatMed)
+	 */
 	public static String generateOutput(String patients, String medications) {
 		initialize();
 		
 		String[] listOfPatients = patients.toUpperCase().split(","); 
 		String[] listOfMedications = medications.toUpperCase().split(",");
 		
-		if (listOfPatients.length == 0 || "".equals(listOfPatients[0])) {
+		if (listOfPatients.length == 0 || "".equals(listOfPatients[0])) { // ",H,H,T"
 			return mapToStr(mapPatMed);
 		}
 
@@ -56,6 +74,9 @@ public class HospitalSimulation implements Serializable{
 		return mapToStr(mapPatMed);
 	}
 
+	/**
+	 * Initialize map with state of having no patients.
+	 */
 	private static void initialize() {
 		mapPatMed.put(HealthState.F, 0);
 		mapPatMed.put(HealthState.H, 0);
@@ -63,6 +84,14 @@ public class HospitalSimulation implements Serializable{
 		mapPatMed.put(HealthState.T, 0);
 		mapPatMed.put(HealthState.X, 0);
 	}
+	
+	/**
+	 * Convert map representation of patients and health states to string that can
+	 * be printed to strout.
+	 * 
+	 * @param map
+	 * @return String
+	 */
 	private static String mapToStr(HashMap<HealthState, Integer> map) {
 		String out = "";
 		for (Map.Entry<HealthState, Integer> entry : map.entrySet()) {
@@ -74,6 +103,11 @@ public class HospitalSimulation implements Serializable{
 		return out;
 	}
 	
+	/**
+	 * Interaction with the user. Method prints to stdout.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {	
 		if (args.length == 0) {
 			System.out.println(generateOutput("", "")); 
@@ -82,7 +116,8 @@ public class HospitalSimulation implements Serializable{
 		} else if (args.length == 2) {
 			System.out.println(generateOutput(args[0], args[1]));
 		} else {
-			System.out.println("Too many arguments. Please enter two arguments; list of patients and list of medications.");
+			System.out.println(
+					"Too many arguments. Please enter two arguments; list of patients and list of medications.");
 		}
 		return;
 	}
