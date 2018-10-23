@@ -1,0 +1,29 @@
+Problem description
+
+You were asked by a doctor friend to prepare for her a “Hospital simulator”, which can
+simulate the future patients’ state, based on their current state and a list of drugs they take.
+Patients can have one of these states:
+● F: Fever
+● H: Healthy
+● D: Diabetes
+● T: Tuberculosis
+● X: Dead
+
+In the “Hospital simulator” drugs are provided to all patients. It is not possible to target a
+specific patient. This is the list of available drugs:
+● As: Aspirin
+● An: Antibiotic
+● I: Insulin
+● P: Paracetamol
+
+Drugs can change patients’ states. They can cure, cause side effects or even kill a patient if
+not properly prescribed.
+Drugs effects are described by the following rules:
+● Aspirin cures Fever;
+● Antibiotic cures Tuberculosis;
+● Insulin prevents diabetic subject from dying, does not cure Diabetes;
+● If insulin is mixed with antibiotic, healthy people catch Fever;
+● Paracetamol cures Fever;
+● Paracetamol kills subject if mixed with aspirin;
+● One time in a million the Flying Flying Spaghetti Monster shows his noodly power
+and resurrects a dead patient (Dead becomes Healthy).

@@ -61,9 +61,14 @@ public class Hospital implements Serializable{
 	public Patient healPatient(Patient patient) {
 		HealthState currentState = patient.getCurrentState();
 		ArrayList<Medication> medications = patient.getPrescribedMedication();
-		
+
+		// It's important to firstly check illegal combination for two reasons. Firstly,
+		// if patients die we don't have check further combinations. Also, if patients
+		// get fever with an combination of insulin and antibiotics, we can later check
+		// if also a fever madication was given to them. This would result in patient
+		// being healthy.
 		currentState = checkIligalCombinations(patient, currentState);
-		
+
 		switch (currentState) {
 		case F:
 			if (medications.contains(Medication.AS) || medications.contains(Medication.P)) 
@@ -102,6 +107,8 @@ public class Hospital implements Serializable{
 
 		if ((prescribedMed.contains(Medication.AS) && prescribedMed.contains(Medication.P)))
 			return HealthState.X;
+		// It's important to check if a patient is dead, we can't bring him back to life
+		// with combination of insulin and antibiotics.
 		if ((prescribedMed.contains(Medication.I) && prescribedMed.contains(Medication.AN) && !(HealthState.X == currentState)))
 			return HealthState.F;
 		
