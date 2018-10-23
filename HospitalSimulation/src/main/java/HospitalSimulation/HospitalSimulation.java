@@ -104,6 +104,62 @@ public class HospitalSimulation implements Serializable{
 	}
 	
 	/**
+	 * @return Hospital
+	 */
+	public static Hospital getHospital() {
+		return hospital;
+	}
+
+	/**
+	 * @param hospital
+	 */
+	public static void setHospital(Hospital hospital) {
+		HospitalSimulation.hospital = hospital;
+	}
+
+	/**
+	 * @return HashMap<HealthState, Integer>
+	 */
+	public static HashMap<HealthState, Integer> getMapPatMed() {
+		return mapPatMed;
+	}
+
+	/**
+	 * @param mapPatMed
+	 */
+	public static void setMapPatMed(HashMap<HealthState, Integer> mapPatMed) {
+		HospitalSimulation.mapPatMed = mapPatMed;
+	}
+
+	/**
+	 * @return ArrayList<Medication>
+	 */
+	public static ArrayList<Medication> getMedsGivenToPatients() {
+		return medsGivenToPatients;
+	}
+
+	/**
+	 * @param medsGivenToPatients
+	 */
+	public static void setMedsGivenToPatients(ArrayList<Medication> medsGivenToPatients) {
+		HospitalSimulation.medsGivenToPatients = medsGivenToPatients;
+	}
+
+	/**
+	 * @return ArrayList<Patient>
+	 */
+	public static ArrayList<Patient> getHealedPatients() {
+		return healedPatients;
+	}
+
+	/**
+	 * @param healedPatients
+	 */
+	public static void setHealedPatients(ArrayList<Patient> healedPatients) {
+		HospitalSimulation.healedPatients = healedPatients;
+	}
+	
+	/**
 	 * Interaction with the user. Method prints to stdout.
 	 * 
 	 * @param args
